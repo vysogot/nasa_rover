@@ -1,9 +1,9 @@
 class Planet
 
-  attr_reader :name, :size
+  attr_reader :x, :y, :name
 
-  def initialize(size, name)
-    @name = name
+  def initialize(x, y)
+    @x, @y, @name = x, y, "Mars"
   end
 
 end

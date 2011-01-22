@@ -8,7 +8,7 @@ class XSoft
 
   # act properly to the received signal
   def interpret(signal)
-    raise 'signal not supported' unless PROTOCOL.include?(signal)
+    raise "signal not supported: #{signal}" unless PROTOCOL.include?(signal)
 
     case signal
     when 'M' then move
