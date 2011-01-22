@@ -1,9 +1,23 @@
 class Rover
 
-  attr_reader :name
+  DIRECTIONS = ['N', 'E', 'S', 'W']
+  DSIZE = 4
+
+  attr_accessor :x, :y, :face
   
-  def initialize(name)
-    @name = name
+  def initialize(x, y, face)
+    @x, @y, @face = x, y, face
+    @software = XSoft.new(self)
+  end  
+
+  # full rover position with its turn
+  def position
+    [x, y, face]
+  end
+
+  def receive_signal(signal)
+    @software.interpret(signal)
+    return self
   end
 
 end
