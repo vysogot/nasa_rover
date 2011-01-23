@@ -1,6 +1,3 @@
-require 'file_orders_reader'
-require 'string_orders_reader'
-
 class OrdersReader
 
   #
