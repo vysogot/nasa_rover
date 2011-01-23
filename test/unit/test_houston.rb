@@ -7,7 +7,7 @@ class TestHouston < Test::Unit::TestCase
   end
 
   should "initialize properly and set the planet" do
-    assert @houston.planet.kind_of?(Planet) 
+    assert @houston.instance_variable_get(:@planet).kind_of?(Planet) 
   end
 
   should "give proper output for test_input.txt" do
@@ -23,7 +23,7 @@ class TestHouston < Test::Unit::TestCase
 
     houston = Houston.new(orders)
     houston.start_the_mission!
-    assert_equal(houston.mission_report, "Mission of Rover-0 failed: it missed the planet")
+    assert_equal(houston.mission_report, "Mission of Rover-0 on Mars failed: it missed the planet")
   end
 
   should "report if a rover fell of the planet" do
@@ -31,7 +31,7 @@ class TestHouston < Test::Unit::TestCase
 
     houston = Houston.new(orders)
     houston.start_the_mission!
-    assert_equal(houston.mission_report, "Mission of Rover-0 failed: it fell of the planet")
+    assert_equal(houston.mission_report, "Mission of Rover-0 on Mars failed: it fell of the planet")
   end
 
 end

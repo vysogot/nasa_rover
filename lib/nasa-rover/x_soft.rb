@@ -1,5 +1,12 @@
 class XSoft
 
+  #
+  # one of possible softwares for NASA rover
+  # this one works with three signals: L, R or M
+  # M - move forward; L - turn left; R - turn right
+  #
+
+  # allowed signals from Houston
   PROTOCOL = ['M', 'L', 'R']
 
   def initialize(rover)
@@ -7,6 +14,7 @@ class XSoft
   end
 
   # act properly to the received signal
+  # makes the interpret method only API (public method) to a rover
   def interpret(signal)
     raise "signal not supported: #{signal}" unless PROTOCOL.include?(signal)
 
@@ -42,10 +50,12 @@ class XSoft
     return self
   end
 
+  # changes the information about the position of a rover
   def set_location(new_coordinates)
     @rover.x, @rover.y = new_coordinates
   end
 
+  # changes the information about the turn of a rover
   def set_face(direction)
     @rover.face = direction
   end
