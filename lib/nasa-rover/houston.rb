@@ -23,6 +23,8 @@ class Houston
   # out of the planet
   def start_the_mission!
     until @orders.eof? do
+      @rover_failed = false
+
       x, y, face, signals = @orders.next_rover_data
       @rovers << rover = Rover.new(x, y, face)
 
@@ -37,14 +39,17 @@ class Houston
           mission_failed(rover, "it fell of the planet")
           break
         end
-      end        
+      end
+    
+      mission_succeed(rover) unless @rover_failed
     end
+
+    return mission_report
   end
 
   # creates ad-hoc mission report by collecting 
   # current positions of rovers on the planet
   def mission_report
-    @rovers.each {|rover| @report << rover.position.join(' ') << "\n"} if @report.empty?
     return @report
   end
 
@@ -58,7 +63,13 @@ class Houston
 
   # adds a failure of an mission to the mission report
   def mission_failed(rover, reason)
-    @report += "Mission of Rover-#{@rovers.index(rover)} on #{@planet.name} failed: #{reason}"
+    @rover_failed = true
+    @report += "Mission of Rover-#{@rovers.index(rover)} on #{@planet.name} failed: #{reason}\n"
+  end
+
+  # adds a successful mission to the mission report
+  def mission_succeed(rover)
+    @report << rover.position.join(' ') << "\n"
   end
 
 end

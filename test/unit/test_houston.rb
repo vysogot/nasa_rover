@@ -23,7 +23,7 @@ class TestHouston < Test::Unit::TestCase
 
     houston = Houston.new(orders)
     houston.start_the_mission!
-    assert_equal(houston.mission_report, "Mission of Rover-0 on Mars failed: it missed the planet")
+    assert_equal(houston.mission_report, "Mission of Rover-0 on Mars failed: it missed the planet\n")
   end
 
   should "report if a rover fell of the planet" do
@@ -31,7 +31,7 @@ class TestHouston < Test::Unit::TestCase
 
     houston = Houston.new(orders)
     houston.start_the_mission!
-    assert_equal(houston.mission_report, "Mission of Rover-0 on Mars failed: it fell of the planet")
+    assert_equal(houston.mission_report, "Mission of Rover-0 on Mars failed: it fell of the planet\n")
   end
 
 end

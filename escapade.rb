@@ -7,6 +7,4 @@ require './lib/nasa-rover/file_orders_reader.rb'
 require './lib/nasa-rover/string_orders_reader.rb'
 
 houston = Houston.new('./test/fixtures/test_input.txt')
-houston.start_the_mission!
-
-puts houston.mission_report
+print houston.start_the_mission!
