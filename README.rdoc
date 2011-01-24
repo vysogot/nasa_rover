@@ -5,13 +5,13 @@ Subject of the project is a software for a NASA rover that needs to implement th
 
 == How to run
 
-`git clone git://github.com/vysogot/nasa-rover.git`
-`bundle install`
-`rake test`
+    git clone git://github.com/vysogot/nasa-rover.git
+    bundle install
+    rake test
 
 ---
 
-`ruby escapade.rb` - to run the sample mission
+    ruby escapade.rb # to run the sample mission
 
 == Contributing to nasa-rover
  
