@@ -3,6 +3,16 @@
 This is the NASA Rover v. 0.1 that will be send one day to discover Mars.
 Subject of the project is a software for a NASA rover that needs to implement the special NASA transmission protocol called LRM. Project is Secret Confident. Burn after reading.
 
+== How to run
+
+`git clone git://github.com/vysogot/nasa-rover.git`
+`bundle install`
+`rake test`
+
+---
+
+`ruby escapade.rb` - to run the sample mission
+
 == Contributing to nasa-rover
  
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet
