@@ -26,7 +26,7 @@ class Houston
       @rover_failed = false
 
       x, y, face, signals = @orders.next_rover_data
-      @rovers << rover = Rover.new(x, y, face)
+      @rovers << rover = Rover.new(@planet, x, y, face)
 
       if out_of_planet?(rover)
         mission_failed(rover, "it missed the planet")

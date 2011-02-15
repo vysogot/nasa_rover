@@ -1,3 +1,5 @@
+require 'observer'
+
 require './lib/nasa-rover/rover.rb'
 require './lib/nasa-rover/planet.rb'
 require './lib/nasa-rover/x_soft.rb'

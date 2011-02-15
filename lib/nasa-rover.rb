@@ -1,3 +1,5 @@
+require 'observer'
+
 require 'rover'
 require 'planet'
 require 'x_soft'
