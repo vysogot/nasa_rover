@@ -4,7 +4,8 @@ class TestPlanet < Test::Unit::TestCase
 
   def setup
     @planet = Planet.new(5,5)
-    @rover = Rover.new(@planet, 1, 1, 'N')
+    @rover = Rover.new
+    @rover.send_on_planet(@planet, 1, 1, 'N')
   end
 
   should "return right rover position on a map when a rover lands" do
@@ -30,15 +31,15 @@ class TestPlanet < Test::Unit::TestCase
   end
 
   should "follow three rovers and return their correct positions" do
-    rover2 = Rover.new(@planet, 4, 5, 'S')
-    rover3 = Rover.new(@planet, 2, 4, 'E')
+    rover2 = Rover.new.send_on_planet(@planet, 4, 5, 'S')
+    rover3 = Rover.new.send_on_planet(@planet, 2, 4, 'E')
 
     "MMRMM".each_char do |signal|
       @rover.receive_signal(signal)
       rover2.receive_signal(signal)
       rover3.receive_signal(signal)
     end
-    
+
     assert_equal(@planet.plan, [
         [nil, nil,    nil,    nil,    nil],
         [nil, nil,    nil,    nil,    nil],
@@ -58,7 +59,7 @@ class TestPlanet < Test::Unit::TestCase
 |N....|
 #######
 FINITO
-   
+
     assert_equal(@planet.nice_plan, expected_plan)
   end
 end

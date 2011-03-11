@@ -1,13 +1,14 @@
 require 'helper'
 
 class TestRover < Test::Unit::TestCase
-  
+
   def setup
     @planet = Planet.new(5,5)
-    @rover = Rover.new(@planet, 3, 4, 'N')
+    @rover = Rover.new
+    @rover.send_on_planet(@planet, 3, 4, 'N')
   end
 
-  # 
+  #
   # testing rover with XSoft software
   #
 
@@ -21,19 +22,19 @@ class TestRover < Test::Unit::TestCase
   end
 
   should "return proper position after it moves north" do
-    assert_equal Rover.new(@planet, 1, 1, 'N').receive_signal('M').position, [1, 2, 'N']
+    assert_equal Rover.new.send_on_planet(@planet, 1, 1, 'N').receive_signal('M').position, [1, 2, 'N']
   end
 
   should "return proper position after it receive_signal('M')s east" do
-    assert_equal Rover.new(@planet, 1, 1, 'E').receive_signal('M').position, [2, 1, 'E']
+    assert_equal Rover.new.send_on_planet(@planet, 1, 1, 'E').receive_signal('M').position, [2, 1, 'E']
   end
 
   should "return proper position after it receive_signal('M')s south" do
-    assert_equal Rover.new(@planet, 1, 1, 'S').receive_signal('M').position, [1, 0, 'S']
+    assert_equal Rover.new.send_on_planet(@planet, 1, 1, 'S').receive_signal('M').position, [1, 0, 'S']
   end
 
   should "return proper position after it receive_signal('M')s west" do
-    assert_equal Rover.new(@planet, 1, 1, 'W').receive_signal('M').position, [0, 1, 'W']
+    assert_equal Rover.new.send_on_planet(@planet, 1, 1, 'W').receive_signal('M').position, [0, 1, 'W']
   end
 
 end

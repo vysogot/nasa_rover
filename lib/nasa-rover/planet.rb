@@ -1,24 +1,22 @@
 class Planet
 
   #
-  # represents the planet Mars by its 
+  # represents the planet Mars by its
   # maximum two-dimension coordinates
   #
 
-  # to be observed by Houston
-  include Observable
-
-  attr_reader :x, :y, :name
+  attr_reader :x, :y, :name, :rovers
 
   def initialize(x, y)
     @x, @y, @name = x, y, "Mars"
     @virgin_plan = lambda { Array.new(@x) { Array.new(@y,nil) } }
+    #@virgin_plan = Array.new(@x) { Array.new(@y) { nil } }
     @rovers = []
   end
 
   # happens when rover changes position
   def update(rover)
-    @rovers << rover unless known?(rover) 
+    @rovers << rover unless known?(rover)
   end
 
   # put each rover on a plan (maybe other objects in the future)
@@ -64,7 +62,7 @@ class Planet
 
   private
 
-  # checks if rover already is on a list 
+  # checks if rover already is on a list
   def known?(rover)
     @rovers.detect { |x| x.equal?(rover) }
   end

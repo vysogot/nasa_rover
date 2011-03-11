@@ -12,18 +12,26 @@ class Rover
   DIRECTIONS = ['N', 'E', 'S', 'W']
   DSIZE = 4
 
-  attr_accessor :x, :y, :face
-  
-  def initialize(planet, x, y, face) 
-    @x, @y, @face = x.to_i, y.to_i, face
+  attr_accessor :x, :y, :face, :name
+
+  def initialize(name = "UnnamedQuad")
+    @name = name
 
     # can be any software... easy to convert is to play chess
     @software = XSoft.new(self)
+  end
+
+  # after creation, a rover is in the Houston factory
+  # and then it has to be sent on the planet
+  def send_on_planet(planet, x, y, face)
+    @x, @y, @face = x.to_i, y.to_i, face
 
     # first planet notification
     self.add_observer(planet)
     changed; notify_observers(self)
-  end  
+
+    return self
+  end
 
   # full rover position with its turn
   def position

@@ -26,11 +26,12 @@ class Houston
       @rover_failed = false
 
       x, y, face, signals = @orders.next_rover_data
-      @rovers << rover = Rover.new(@planet, x, y, face)
+      @rovers << rover = Rover.new
+      rover.send_on_planet(@planet, x, y, face)
 
       if out_of_planet?(rover)
         mission_failed(rover, "it missed the planet")
-        next 
+        next
       end
 
       signals.each do |signal|
@@ -40,14 +41,14 @@ class Houston
           break
         end
       end
-    
+
       mission_succeed(rover) unless @rover_failed
     end
 
     return mission_report
   end
 
-  # creates ad-hoc mission report by collecting 
+  # creates ad-hoc mission report by collecting
   # current positions of rovers on the planet
   def mission_report
     return @report
